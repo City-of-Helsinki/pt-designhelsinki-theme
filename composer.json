@@ -1,0 +1,18 @@
+{
+    "name": "astehelsinki/pt-designhelsinki-theme",
+    "description": "",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "email": "kehitys@astehelsinki.fi",
+            "name": "Aste Helsinki Oy"
+        }
+    ],
+    "type": "wordpress-theme",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+			"wecodemore/wpstarter": "~2.0",
+			"johnpbloch/wordpress-core": ">5.0"
+    }
+}

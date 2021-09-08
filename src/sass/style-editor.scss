@@ -1,0 +1,46 @@
+.wp-block {
+  max-width: 850px;
+
+  &[data-align='wide'] {
+    max-width: 850px;
+  }
+
+  &[data-align='full'] {
+    max-width: none;
+  }
+}
+
+.block-editor-block-list__block {
+
+  &[data-title='Hero'] {
+
+    [data-name='text'] {
+      background: #ffffff;
+      position: absolute;
+      top: 150px;
+      left: 50px;
+    }
+
+    [data-name='button_text'] {
+      background: #ffffff;
+      position: absolute;
+      bottom: 150px;
+      left: 50px;
+    }
+  }
+}
+
+
+/* ACF "repeat-horizontal" class, display repeaters in horizontal columns */
+.repeat-horizontal .acf-repeater tbody {
+  display: flex;
+  flex-direction: row;
+}
+
+.repeat-horizontal .acf-repeater tr.acf-row:not( .acf-clone ) {
+  width: 100%;
+}
+
+.repeat-horizontal .acf-repeater tr.acf-row:not( .acf-clone ) td.acf-fields {
+  width: 100%!important; /* important is necessary because it gets overwritten on drag&drop  */
+}
