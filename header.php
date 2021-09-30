@@ -103,9 +103,7 @@
 								array(
 									'theme_location'  => 'primary',
 									'menu' 			  => 'Menu 1',
-								//'walker'          => new Bulmascores_Nav_Walker(),
 									'container' => false,
-								//'items_wrap'      => '<div class="navbar-start">%3$s</div>',
 								)
 							);
 							?>

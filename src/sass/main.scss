@@ -104,6 +104,7 @@ h5 {
   }
 }
 
+
 a {
   color: #000000;
   // font-family: HelsinkiGrotesk-Medium, Georgia, sans-serif;
@@ -478,6 +479,15 @@ body {
   }
 }
 
+.load-more {
+
+  &.button {
+    display: flex;
+    margin: auto!important;
+    width: 50%;
+  }
+}
+
 .desktop-only {
   display: block;
 
@@ -487,12 +497,13 @@ body {
 }
 
 #lang_choice_1 {
-  border: none;
-  padding: 15px 0;
   right: 10px;
   position: absolute;
   float: right;
   top: 0;
+  border: 2px solid #666666;
+  padding: 6px 0 7px 4px;
+  margin: 7px 0;
 }
 
 .excerpt {
@@ -960,6 +971,10 @@ button.button.is-info {
         font-size: 20px;
         color: #1a1a1a;
         word-break: break-word;
+
+        &.lowercase {
+          text-transform: lowercase;
+        }
       }
 
       h4 {
@@ -1349,7 +1364,6 @@ button.button.is-info {
       position: absolute;
       left: 0;
       height: 95px;
-      bottom: 15px;
       @include mobile {
         top: 20px;
       }

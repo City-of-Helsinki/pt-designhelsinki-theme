@@ -42,7 +42,7 @@ $query = new WP_Query($args);
 if ($query->have_posts()) :
   global $post;
   ?> 
-  <section id="uutiset" class="section latest zoom">
+  <section id="uutiset" class="section latest zoom" data-category="<?php $cat; ?>">
     <div class="container">
       <h2 class="section-title"><?= $title ?></h2>
       <div class="columns is-multiline">
@@ -68,6 +68,11 @@ if ($query->have_posts()) :
 
         <?php endwhile; wp_reset_postdata(); ?> 
       </div>
+
+      <?php if(is_page("ajankohtaista") || (is_page("aktuellt") || (is_page("whats-on") ))): ?>
+        <button class="load-more button"><?php pll_e('Lataa lisää'); ?></button>
+      <?php endif; ?>
+      
     </div>
   </section>
 <?php endif; ?>

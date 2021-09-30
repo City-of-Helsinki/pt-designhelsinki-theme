@@ -464,6 +464,7 @@ function designhelsinki_translates() {
 		pll_register_string( 'Ajankohtaista', 'Ajankohtaista', 'designhelsinki', false );
 		pll_register_string( 'Tapahtumat', 'Tapahtumat', 'designhelsinki', false );
 		pll_register_string( 'Lue lisää', 'Lue lisää', 'designhelsinki', false );
+		pll_register_string( 'Lataa lisää', 'Lataa lisää', 'designhelsinki', false );
 		pll_register_string( 'Kaikki uutiset', 'Kaikki uutiset', 'designhelsinki', false );
 		pll_register_string( 'Yhteystiedot', 'Yhteystiedot', 'designhelsinki', false );
 		pll_register_string( 'Hae yhteystietoja', 'Hae yhteystietoja', 'designhelsinki', false );
@@ -530,6 +531,11 @@ function designhelsinki_exclude_pages_search($query) {
 }
 
 
+function stripAccents($str) {
+	return strtr(utf8_decode($str), utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
+}
+
+
 function theme_archive_title( $title ) {
 	if ( is_category() ) {
 		$title = single_cat_title( '', false );
@@ -547,4 +553,43 @@ function theme_archive_title( $title ) {
 }
 
 add_filter( 'get_the_archive_title', 'theme_archive_title' );
+
+
+function add_ajax_script() {
+	wp_localize_script( 'helsinkidesign-scipts', 'ajax_params', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+}
+add_action( 'wp_enqueue_scripts', 'add_ajax_script' );
+
+
+function loadmore_ajax_handler() {
+	$post_category_name = $_POST['catName'];
+	$excluded_posts = $_POST['uutisetItemsVisible'];
+	$amount = $_POST['amount'];
+	$args['post_status'] = 'publish';
+	$args['offset'] = intval($excluded_posts);
+	$args['category_name'] = $post_category_name;
+
+	$args['showposts'] = intval($amount);
+
+	$posts = query_posts( $args );
+	global $wp_query;
+	$postCount = $wp_query->post_count;
+	$posts_per_page = get_option( 'posts_per_page' );
+	$maxPages = $wp_query->max_num_pages;
+	if($postCount < 1) :
+
+	else:
+
+		if( have_posts() ) :
+			while( have_posts() ): the_post();
+				get_template_part( 'template-parts/blocks/category-news', 'content' ); 
+			endwhile;
+		endif;
+	endif;
+	die;
+}
+
+
+add_action('wp_ajax_loadmore', 'loadmore_ajax_handler'); // wp_ajax_{action}
+add_action('wp_ajax_nopriv_loadmore', 'loadmore_ajax_handler'); // wp_ajax_nopriv_{action}
 

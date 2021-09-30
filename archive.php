@@ -53,7 +53,7 @@ $image = get_field('category_image' , $term);
 				$cat_id = $category->term_id;
 
 				$args = array(
-					'posts_per_page' => 9,
+					'posts_per_page' => 12,
 					'cat' => $cat_id,
 				);
 

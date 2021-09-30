@@ -29,6 +29,8 @@ if( have_rows('contacts') ): ?>
           <?php 
           $etunimi = get_sub_field('etunimi');
           $sukunimi = get_sub_field('sukunimi');
+          $email_etunimi = stripAccents($etunimi);
+          $email_sukunimi = stripAccents($sukunimi);
           $titteli = get_sub_field('titteli');
           $puhnro = get_sub_field('puhnro');
           ?>
@@ -36,7 +38,7 @@ if( have_rows('contacts') ): ?>
           <div class="column is-3 is-12-mobile content">
             <h4><?= $etunimi ?><br/><?= $sukunimi ?></h4>
             <p><?= $titteli ?></p>
-            <p><?= $etunimi.'.'.$sukunimi.'(at)hel.fi'; ?></p>
+            <p class="lowercase"><?= $email_etunimi.'.'.$email_sukunimi.'(at)hel.fi'; ?></p>
             <p><?= $puhnro; ?></p>
           </div>
 
