@@ -12,6 +12,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "composer/installers": "~1.0.0"
+            "wecodemore/wpstarter": "~2.0",
+            "johnpbloch/wordpress-core": ">5.0"
     }
 }
