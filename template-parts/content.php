@@ -65,7 +65,16 @@
 				'after'  => '</div>',
 			) );
 			?>
-			
+
+			<?php 			
+			// If comments are open or we have at least one comment, load up the comment template.
+			if ( comments_open() || get_comments_number() ) :
+				if (in_category('Vieraskynä')) {
+					comments_template();
+				}
+			endif;
+			?>
+
 			<div class="social-media">
 				<a href="http://www.facebook.com/sharer.php?u=<?= rawurlencode( get_the_permalink() ); ?>&t=<?= rawurlencode( get_the_title() ); ?>"><div class="hds-icon hds-icon--size-m hds-icon--facebook"></div></a>
 				<a href="<?php echo esc_url('https://www.twitter.com/share?url=' . get_the_permalink() . '&text=' . get_the_title()); ?>"><div class="hds-icon hds-icon--size-m hds-icon--twitter"></div></a>
