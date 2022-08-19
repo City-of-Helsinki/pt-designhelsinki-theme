@@ -23,10 +23,22 @@ get_header();
 
   <?php 
 
+  $today = current_time('d.m.Y');
+
   $args = array(
-    'posts_per_page' => 3,
+    'posts_per_page' => 6,
     'post_type' => 'tapahtumat',
     'post_status' => 'publish',
+    'meta_query' => array(
+      array(
+        'key' => 'tapahtuma_pvm',
+        'compare' => '>=',
+        'value' => $today,
+      )
+    ),
+    'meta_key' => 'tapahtuma_pvm',
+    'orderby' => 'meta_value',
+    'order' => 'DESC',
   );
 
   $query = new WP_Query($args);
