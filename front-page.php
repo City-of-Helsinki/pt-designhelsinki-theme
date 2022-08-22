@@ -34,10 +34,11 @@ get_header();
         'key' => 'tapahtuma_pvm',
         'compare' => '>=',
         'value' => $today,
+        'type' => 'DATE',
       )
     ),
     'meta_key' => 'tapahtuma_pvm',
-    'orderby' => 'meta_value',
+    'orderby' => 'meta_value_num',
     'order' => 'DESC',
   );
 
