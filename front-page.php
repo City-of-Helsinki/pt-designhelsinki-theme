@@ -108,9 +108,17 @@ get_header();
         <div class="columns is-multiline">
 
           <?php while ($query->have_posts()) : 
-            $query->the_post(); ?>
+            $query->the_post(); 
 
-            <a href="<?php the_permalink(); ?>" class="column is-6">
+            if (get_field('rss_url')) {
+              $link = get_field('rss_url');
+            } else {
+              $link = get_the_permalink($post->ID);
+            }
+
+            ?>
+
+            <a href="<?= $link; ?>" class="column is-6">
               <h4 class="title is-4"><?php the_title(); ?></h4>
               <span><?= get_the_date('d.m.Y'); ?></span>
             </a>
