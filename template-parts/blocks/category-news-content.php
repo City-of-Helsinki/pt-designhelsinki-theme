@@ -1,8 +1,15 @@
 <?php
 $ingressi = get_the_excerpt($postID);
+
+if (get_field('rss_url')) {
+  $link = get_field('rss_url');
+} else {
+  $link = get_the_permalink($post->ID);
+}
+
 ?>
 
-<a href="<?php the_permalink(); ?>" class="column is-4 is-12-mobile">
+<a href="<?php $link; ?>" class="column is-4 is-12-mobile">
   <div class="element">
     <figure class="image is-3by2">
       <?php if (has_post_thumbnail()) : ?>
