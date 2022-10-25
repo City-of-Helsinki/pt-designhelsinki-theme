@@ -51,9 +51,16 @@ if ($query->have_posts()) :
           $ingressi = get_field('ingressi', $post->ID);
           $image_id = get_post_thumbnail_id(get_the_ID());
           $alt_text = get_post_meta($image_id , '_wp_attachment_image_alt', true);
+
+          if (get_field('rss_url', $post->ID)) {
+            $link = get_field('rss_url', $post->ID);
+          } else {
+            $link = get_the_permalink($post->ID);
+          }
+
           ?>
 
-          <a href="<?php the_permalink(); ?>" class="column is-4 is-12-mobile">
+          <a href="<?= $link ?>" class="column is-4 is-12-mobile">
             <div class="element">
               <figure class="image is-3by2">
                 <img class="is-square" src="<?= get_the_post_thumbnail_url( $post->ID, 'large' ); ?>" alt="<?= $alt_text; ?>">
@@ -70,11 +77,11 @@ if ($query->have_posts()) :
       </div>
 
       <?php if(is_page("ajankohtaista") || (is_page("aktuellt") || (is_page("whats-on") ))): ?>
-        <button class="load-more button"><?php pll_e('Lataa lisää'); ?></button>
-      <?php endif; ?>
-      
-    </div>
-  </section>
+      <button class="load-more button"><?php pll_e('Lataa lisää'); ?></button>
+    <?php endif; ?>
+
+  </div>
+</section>
 <?php endif; ?>
 
 
