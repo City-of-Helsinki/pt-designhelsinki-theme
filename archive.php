@@ -73,6 +73,14 @@ $image = get_field('category_image' , $term);
 											<img class="is-square" src="<?= get_the_post_thumbnail_url( $post->ID, 'large' ); ?>" alt="">
 										</figure>
 										<div class="text-content">
+										<p><?php echo get_the_date('d.m.Y'); ?></p>
+											<?php if (in_category(array('blog', 'blogi', 'blogg'))) { ?>
+												<?php if (get_field('kirjoittaja')) { ?>
+													<div class="writer-info">
+														<?php echo get_field('kirjoittaja');?>
+													</div>
+												<?php } ?>
+											<?php } ?>
 											<h3 class="title is-4 is-medium"><?php the_title(); ?></h3>
 										</div>
 										<div class="hds-icon hds-icon--size-l hds-icon--arrow-right"></div>
