@@ -62,8 +62,12 @@ if ($query->have_posts()) :
 
           <a href="<?= $link ?>" class="column is-4 is-12-mobile">
             <div class="element">
-              <figure class="image is-3by2">
-                <img class="is-square" src="<?= get_the_post_thumbnail_url( $post->ID, 'large' ); ?>" alt="<?= $alt_text; ?>">
+            <figure class="image is-3by2">
+              <?php if (has_post_thumbnail()) : ?>
+                <img class="is-square" src="<?= get_the_post_thumbnail_url( $post->ID, 'large' ); ?>" alt="">
+              <?php else : ?>
+                <img class="is-square" src="<?php echo get_stylesheet_directory_uri(); ?>/images/helsinki-fi.svg" alt="Helsinki logo">
+              <?php endif; ?>
               </figure>
               <div class="text-content">
                 <p class="date"><?= get_the_date('d.m.Y'); ?></p>
