@@ -50,7 +50,7 @@ if ($query->have_posts()) :
           $query->the_post(); 
           $ingressi = get_field('ingressi', $post->ID);
           $image_id = get_post_thumbnail_id(get_the_ID());
-          $alt_text = get_post_meta($image_id , '_wp_attachment_image_alt', true);
+          $alt_text = get_field('rss_img_alt', $post->ID);
 
           if (get_field('rss_url', $post->ID)) {
             $link = get_field('rss_url', $post->ID);
@@ -66,6 +66,7 @@ if ($query->have_posts()) :
                 <img class="is-square" src="<?= get_the_post_thumbnail_url( $post->ID, 'large' ); ?>" alt="<?= $alt_text; ?>">
               </figure>
               <div class="text-content">
+                <p class="date"><?= get_the_date('d.m.Y'); ?></p>
                 <h3 class="title is-4 is-medium"><?php the_title(); ?></h3>
                 <p class="excerpt"><?= $ingressi; ?></p>
               </div>
