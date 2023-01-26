@@ -119,7 +119,7 @@
       success : function( data ){
         if( data && data != 0) { 
           $("#uutiset div.columns").append(data);
-          if($('#uutiset div.columns a').length % uutisetItemsVisible != 0){
+          if($('#uutiset div.columns a').length = 0){
             button.remove();
           } else {
             button.text( 'Lataa lisää' );
