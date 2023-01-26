@@ -19,6 +19,7 @@ if (get_field('rss_url', $post->ID)) {
     <?php endif; ?>
   </figure>
   <div class="news-content">
+    <p class="date"><?= get_the_date('d.m.Y'); ?></p>
     <h3 class="title is-4 is-medium"><?php the_title(); ?></h3>
     <p class="excerpt"><?php echo wp_trim_words($ingressi, 11, '...' ); ?></p></div>
     <div class="hds-icon hds-icon--size-l hds-icon--arrow-right"></div>
