@@ -9,7 +9,7 @@ if (get_field('rss_url', $post->ID)) {
 
 ?>
 
-<a href="<?php $link; ?>" class="column is-4 is-12-mobile">
+<a href="<?= $link ?>" class="column is-4 is-12-mobile">
   <div class="element">
     <figure class="image is-3by2">
       <?php if (has_post_thumbnail()) : ?>
