@@ -9,9 +9,5 @@
     ],
     "type": "wordpress-theme",
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "require": {
-            "wecodemore/wpstarter": "~2.0",
-            "johnpbloch/wordpress-core": ">5.0"
-    }
+    "prefer-stable": true
 }
