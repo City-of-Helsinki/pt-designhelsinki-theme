@@ -43,11 +43,6 @@ if ( ! function_exists( 'designhelsinki_setup' ) ) :
 		 */
 		add_theme_support( 'post-thumbnails' );
 
-		// This theme uses wp_nav_menu() in one location.
-		register_nav_menus( array(
-			'menu-1' => esc_html__( 'Primary', 'designhelsinki' ),
-		) );
-
 		/*
 		 * Switch default core markup for search form, comment form, and comments
 		 * to output valid HTML5.
@@ -185,7 +180,11 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 
 /* Load designhelsinki functions */
 require get_template_directory() .'/functions/designhelsinki-nav-walker.php';
+require get_template_directory() .'/functions/theme-menu.php';
 
+add_action( 'after_setup_theme', 'designhelsinki_register_nav_menus' );
+add_filter( 'walker_nav_menu_start_el', 'designhelsinki_main_menu_dropdown_arrow', 10, 4 );
+add_action( 'designhelsinki_header_navigation_menu', 'designhelsinki_main_menu' );
 
 function comment_form_designhelsinki_fields ($fields) {
 	$fields["author"] = '<div class="comment-form-author field"><label for="author" class="label">' . __( 'Name', 'domainreference' ) .
@@ -215,8 +214,8 @@ function designhelsinki_custom_logo() {
 			'class'    => 'custom-logo',
 		) )
 	);
-	return $html;   
-} 
+	return $html;
+}
 
 
 function block_category( $categories, $post ) {
@@ -393,7 +392,7 @@ function events_post_type() {
 add_action( 'init', 'events_post_type', 0 );
 
 /**
- * Display Post Blocks 
+ * Display Post Blocks
  *
  */
 // function display_post_blocks() {
@@ -457,7 +456,7 @@ function excerpt($limit) {
 
 function designhelsinki_translates() {
 
-   // register our translatable strings 
+   // register our translatable strings
 
 	if ( function_exists( 'pll_register_string' ) ) {
 
@@ -479,25 +478,6 @@ function designhelsinki_translates() {
 	}
 }
 add_action( 'after_setup_theme', 'designhelsinki_translates' );
-
-
-/*
-*
-* Walker for the main menu 
-*
-*/
-add_filter( 'walker_nav_menu_start_el', 'add_arrow',10,4);
-function add_arrow( $output, $item, $depth, $args ){
-
-//Only add class to 'top level' items on the 'primary' menu.
-	if('primary' == $args->theme_location && $depth === 0 ){
-		if (in_array("menu-item-has-children", $item->classes)) {
-			$output .='<button class="menu-toggle" aria-expanded="false" aria-label="Avaa alavalikko" tabindex="0"><div class="inner-button hds-icon hds-icon--size-m hds-icon--angle-down closed"></div></button>';
-		}
-	}
-	return $output;
-}
-
 
 function designhelsinki_multilang_logo( $value ) {
 	if ( function_exists( 'pll_current_language' ) ) {
@@ -525,7 +505,7 @@ add_filter( 'get_custom_logo', 'designhelsinki_multilang_logo' );
 add_filter( 'pre_get_posts', 'designhelsinki_exclude_pages_search' );
 function designhelsinki_exclude_pages_search($query) {
 	if ( $query->is_search )
-		$query->set( 'post__not_in', array( 133, 1237, 1239, ) ); 
+		$query->set( 'post__not_in', array( 133, 1237, 1239, ) );
 
 	return $query;
 }
@@ -582,7 +562,7 @@ function loadmore_ajax_handler() {
 
 		if( have_posts() ) :
 			while( have_posts() ): the_post();
-				get_template_part( 'template-parts/blocks/category-news', 'content' ); 
+				get_template_part( 'template-parts/blocks/category-news', 'content' );
 			endwhile;
 		endif;
 	endif;
@@ -592,4 +572,3 @@ function loadmore_ajax_handler() {
 
 add_action('wp_ajax_loadmore', 'loadmore_ajax_handler'); // wp_ajax_{action}
 add_action('wp_ajax_nopriv_loadmore', 'loadmore_ajax_handler'); // wp_ajax_nopriv_{action}
-

@@ -68,7 +68,7 @@
 									<div  class="hds-icon hds-icon--size-s hds-icon--search desktop-only">
 										Hae
 									</div>
-									<span class="search-text"><?php pll_e('Hae') ?></span> 
+									<span class="search-text"><?php pll_e('Hae') ?></span>
 									<div class="search-box" aria-expanded="false" aria-label="Avaa sivuston haku">
 										<?php get_search_form(); ?>
 									</div>
@@ -98,15 +98,7 @@
 
 					<div class="navbar-menu">
 						<div class="container">
-							<?php 
-							wp_nav_menu(
-								array(
-									'theme_location'  => 'primary',
-									'menu' 			  => 'Menu 1',
-									'container' => false,
-								)
-							);
-							?>
+							<?php do_action( 'designhelsinki_header_navigation_menu' ); ?>
 						</div>
 					</div>
 				</nav>
