@@ -82,11 +82,19 @@
 
 				<nav class="navigation">
 					<div class="navbar-brand mobile-only is-mobile is-vcentered">
-						<div class="navbar-burger burger" data-target="navMenuColorinfo-example">
+						<button id="mobile-menu-panel-toggle" class="navbar-burger burger" aria-expanded="false" aria-controls="mobile-menu-panel">
 							<span></span>
 							<span></span>
 							<span></span>
+							<span class="screen-reader-text"><?php pll_e('Mobiilivalikko'); ?></span>
+						</button>
+
+						<div id="mobile-menu-panel" class="mobile-menu" aria-labelledby="mobile-menu-panel-toggle">
+							<div class="container">
+								<?php do_action( 'designhelsinki_header_navigation_menu' ); ?>
+							</div>
 						</div>
+
 						<div class="mobile-logo is-mobile columns is-vcentered mobile-only">
 							<?php the_custom_logo(); ?>
 							<div class="site-brand mobile-only">Design Helsinki</div>
@@ -96,7 +104,7 @@
 						</div>
 					</div>
 
-					<div class="navbar-menu">
+					<div id="menu-panel" class="navbar-menu" aria-labelledby="menu-panel-toggle">
 						<div class="container">
 							<?php do_action( 'designhelsinki_header_navigation_menu' ); ?>
 						</div>
