@@ -1,5 +1,6 @@
 <?php
-$ingressi = get_the_excerpt($postID);
+// $ingressi = get_the_excerpt($post->ID);
+$ingressi = '';
 
 if (get_field('rss_url', $post->ID)) {
   $link = get_field('rss_url', $post->ID);
@@ -25,4 +26,3 @@ if (get_field('rss_url', $post->ID)) {
     <div class="hds-icon hds-icon--size-l hds-icon--arrow-right"></div>
   </div>
 </a>
-
