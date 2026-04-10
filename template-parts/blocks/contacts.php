@@ -1,4 +1,4 @@
- <?php
+<?php
 
 /**
  * Editor Card Template.
@@ -13,39 +13,31 @@ if( !empty($block['align']) ) {
 }
 
 $title = get_field('contact_title');
-?>
 
-
-
-
-
-<?php 
 if( have_rows('contacts') ): ?>
-  <section class="section contact">
-    <div class="container">
-      <h2 class="section-title"><?= $title ?></h2>
-      <div class="columns is-multiline">
-        <?php while( have_rows('contacts') ) : the_row(); ?>
-          <?php 
-          $etunimi = get_sub_field('etunimi');
-          $sukunimi = get_sub_field('sukunimi');
-          $email_etunimi = stripAccents($etunimi);
-          $email_sukunimi = stripAccents($sukunimi);
-          $titteli = get_sub_field('titteli');
-          $puhnro = get_sub_field('puhnro');
-          ?>
+	<section class="section contact">
+		<div class="container">
+			<h2 class="section-title"><?= $title ?></h2>
+			<div class="columns is-multiline">
+				<?php while( have_rows('contacts') ) : the_row(); ?>
+					<?php
+					$etunimi = get_sub_field('etunimi');
+					$sukunimi = get_sub_field('sukunimi');
+					$email_etunimi = stripAccents($etunimi);
+					$email_sukunimi = stripAccents($sukunimi);
+					$titteli = get_sub_field('titteli');
+					$puhnro = get_sub_field('puhnro');
+				?>
 
-          <div class="column is-3 is-12-mobile content">
-            <h4><?= $etunimi ?><br/><?= $sukunimi ?></h4>
-            <p><?= $titteli ?></p>
-            <p class="lowercase"><?= $email_etunimi.'.'.$email_sukunimi.'(at)hel.fi'; ?></p>
-            <p><?= $puhnro; ?></p>
-          </div>
+					<div class="column is-3 is-12-mobile content">
+						<h4><?= $etunimi ?><br/><?= $sukunimi ?></h4>
+						<p><?= $titteli ?></p>
+						<p class="lowercase"><?= $email_etunimi.'.'.$email_sukunimi.'(at)hel.fi'; ?></p>
+						<p><?= $puhnro; ?></p>
+					</div>
 
-        <?php endwhile; ?>
-      </div>
-    </div>
-  </section>
+				<?php endwhile; ?>
+			</div>
+		</div>
+	</section>
 <?php endif; ?>
-
-
