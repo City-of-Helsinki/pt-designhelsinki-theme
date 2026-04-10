@@ -1,4 +1,4 @@
- <?php
+<?php
 
 /**
  * Hero Block Template.
@@ -35,7 +35,6 @@ $button_text = get_field('button_text') ? : pll__('Lue lisää');
       <a href="<?= $link ?>" class="button"><?= $button_text ?></a>
     </div>
   </div>
-</div>
 </section>
 <section class="section mobile-hero mobile-only">
   <div class="container hero-box">
@@ -43,6 +42,3 @@ $button_text = get_field('button_text') ? : pll__('Lue lisää');
     <a href="<?= $link ?>" class="button"><?= $button_text ?></a>
   </div>
 </section>
-
-
-
