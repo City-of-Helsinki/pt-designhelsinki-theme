@@ -140,7 +140,8 @@ add_action( 'after_setup_theme', 'designhel_setup' );
 /**
  * Enqueue scripts and styles.
  */
-function designhelsinki_scripts() {
+add_action( 'enqueue_block_assets', 'designhelsinki_common_assets' );
+function designhelsinki_common_assets(): void {
 	$assets_url = designhelsinki_theme_assets_url();
 	$assets_version = designhelsinki_theme_version();
 
@@ -165,6 +166,24 @@ function designhelsinki_scripts() {
 	// 	'all'
 	// );
 
+	wp_enqueue_style(
+		$theme_handle,
+		$assets_url . '/public/css/styles.min.css',
+		array( $owl_handle ),
+		$assets_version,
+		'all'
+	);
+}
+
+function designhelsinki_scripts() {
+	$assets_url = designhelsinki_theme_assets_url();
+	$assets_version = designhelsinki_theme_version();
+
+	$theme_handle = 'design-helsinki';
+
+	$owl_handle = $theme_handle . '-owlcarousel';
+	$owl_version = '2.3.4';
+
 	wp_enqueue_script(
 		$owl_handle,
 		$assets_url . '/vendor/owlcarousel/owl.carousel.min.js',
@@ -174,14 +193,6 @@ function designhelsinki_scripts() {
 			'strategy' => 'defer',
 			'in_footer' => true,
 		)
-	);
-
-	wp_enqueue_style(
-		$theme_handle,
-		$assets_url . '/public/css/styles.min.css',
-		array( $owl_handle ),
-		$assets_version,
-		'all'
 	);
 
 	wp_enqueue_script(
@@ -277,7 +288,7 @@ function designhelsinki_custom_logo() {
 }
 
 
-function block_category( $categories, $post ) {
+function block_category( $categories, $block_editor_context ) {
 	return array_merge(
 		$categories,
 		array(
@@ -288,7 +299,7 @@ function block_category( $categories, $post ) {
 		)
 	);
 }
-add_filter( 'block_categories', 'block_category', 10, 2);
+add_filter( 'block_categories_all', 'block_category', 10, 2);
 
 
 
@@ -297,6 +308,8 @@ function my_acf_init_block_types() {
 
     // Check function exists.
 	if( function_exists('acf_register_block_type') ) {
+
+		add_filter( 'acf/blocks/default_block_version', fn() => 3 );
 
         // register a testimonial block.
 		acf_register_block_type(array(
