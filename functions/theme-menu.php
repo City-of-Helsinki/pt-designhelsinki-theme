@@ -28,7 +28,7 @@ function designhelsinki_main_menu_dropdown_arrow( $output, $item, $depth, $args 
 		&& 0 === $depth
 		&& in_array( "menu-item-has-children", $item->classes )
 	) {
-		$output .='<button class="menu-toggle" aria-expanded="false" aria-label="Avaa alavalikko" tabindex="0"><div class="inner-button hds-icon hds-icon--size-m hds-icon--angle-down closed"></div></button>';
+		$output .='<button class="menu-toggle" aria-expanded="false" aria-label="Avaa alavalikko" tabindex="0"><span class="inner-button hds-icon hds-icon--size-m hds-icon--angle-down closed"></span></button>';
 	}
 	return $output;
 }
