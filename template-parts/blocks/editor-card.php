@@ -1,4 +1,4 @@
- <?php
+<?php
 
 /**
  * Editor Card Template.
@@ -14,14 +14,8 @@ if( !empty($block['align']) ) {
 
 $content = get_field('content');
 ?>
-
-
 <section class="section <?php echo esc_attr($className); ?>">
-  <div class="content">
-    <?= $content; ?>
-  </div>
+	<div class="content">
+		<?= $content; ?>
+	</div>
 </section>
-
-
-
-

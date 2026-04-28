@@ -44,3 +44,8 @@
 .repeat-horizontal .acf-repeater tr.acf-row:not( .acf-clone ) td.acf-fields {
   width: 100%!important; /* important is necessary because it gets overwritten on drag&drop  */
 }
+
+// Prevent click handling in v3 blocks
+.acf-block-component a {
+  pointer-events: none;
+}

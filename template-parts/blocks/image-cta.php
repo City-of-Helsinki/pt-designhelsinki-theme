@@ -1,4 +1,4 @@
- <?php
+<?php
 
 /**
  * Image CTA Template.
@@ -29,27 +29,22 @@ $side = $text_side === 'text-right' ? 'reverse' : '';
 
 $color = (get_field('color_pick') === 'green') ? 'green' : ((get_field('color_pick') === 'yellow') ? 'yellow' : 'pink');
 ?>
-
-
 <section id="<?php echo esc_attr($id); ?>" class="section <?php echo esc_attr($className); ?>">
-  <div class="container">
-    <div class="columns">
-      <div class="column is-relative">
-        <div class="columns is-vcentered <?= $side ?>">
-          <div class="column is-8-tablet">
-            <figure>
-              <img class="image" src="<?= $image; ?>">
-            </figure>
-          </div>
-          <div class="column is-4 is-5-tablet <?= $text_side.' '. $color; ?> overlapping">
-            <?= $content  ?>
-            <a href="<?= $link; ?>" class="button"><?= $button_text ?></a>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+	<div class="container">
+		<div class="columns">
+			<div class="column is-relative">
+				<div class="columns is-vcentered <?= $side ?>">
+					<div class="column is-8-tablet">
+						<figure>
+							<img class="image" src="<?= $image; ?>">
+						</figure>
+					</div>
+					<div class="column is-4 is-5-tablet <?= $text_side.' '. $color; ?> overlapping">
+						<?= $content  ?>
+						<a href="<?= $link; ?>" class="button"><?= $button_text ?></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
-
-

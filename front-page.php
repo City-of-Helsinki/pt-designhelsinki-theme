@@ -7,21 +7,19 @@
 
 get_header();
 ?>
-
-
 <div id="primary" class="content-area">
 
-  <?php get_template_part( 'template-parts/', 'content') ?>
+	<?php
 
+		get_template_part( 'template-parts/', 'content');
 
-  <?php the_content(); ?>
+		the_content();
 
+		get_template_part( 'template-parts/blocks', 'hero' );
 
-  <?php get_template_part( 'template-parts/blocks', 'hero' ); ?>
+	?>
 
-
-
-  <?php 
+  <?php
 
   $args = array(
     'posts_per_page' => 6,
@@ -41,16 +39,13 @@ get_header();
 
   $query = new WP_Query($args);
 
-  if ($query->have_posts()) : 
-
-
-    ?> 
+  if ($query->have_posts()) :  ?>
     <section class="section events">
       <div class="container">
         <h2 class="section-title"><?php pll_e('Tapahtumat') ?></h2>
 
-        <?php while ($query->have_posts()) : 
-          $query->the_post(); 
+        <?php while ($query->have_posts()) :
+          $query->the_post();
           $date = get_field('tapahtuma_pvm');
           $time = get_field('tapahtuma_alkaa');
           $link = get_field('tapahtuman_linkki');
@@ -100,15 +95,15 @@ get_header();
 
   $query = new WP_Query($args);
 
-  if ($query->have_posts()) :  ?> 
+  if ($query->have_posts()) :  ?>
 
     <section class="section topical">
       <div class="container">
         <h2 class="section-title"><?php pll_e('Ajankohtaista') ?></h2>
         <div class="columns is-multiline">
 
-          <?php while ($query->have_posts()) : 
-            $query->the_post(); 
+          <?php while ($query->have_posts()) :
+            $query->the_post();
 
             if (get_field('rss_url')) {
               $link = get_field('rss_url');
@@ -143,6 +138,8 @@ get_header();
       </div>
     </section>
 
-  <?php endif;
+	<?php endif; ?>
 
-  get_footer();
+</div><!-- #primary -->
+
+<?php get_footer();
